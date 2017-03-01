@@ -1,10 +1,9 @@
 package grails3wspoc
 
+import com.github.rahulsom.swaggydoc.SwaggyAdditionalClasses
 import com.github.rahulsom.swaggydoc.SwaggyDelete
 import com.github.rahulsom.swaggydoc.SwaggyList
-import com.github.rahulsom.swaggydoc.SwaggySave
 import com.github.rahulsom.swaggydoc.SwaggyShow
-import com.github.rahulsom.swaggydoc.SwaggyUpdate
 import com.wordnik.swagger.annotations.Api
 import com.wordnik.swagger.annotations.ApiImplicitParam
 import com.wordnik.swagger.annotations.ApiImplicitParams
@@ -74,8 +73,9 @@ class PostsController {
     ])
     @ApiImplicitParams([
             @ApiImplicitParam(name = 'body', paramType = 'body', required = true,
-                    dataType = 'Posts'),
+                    dataType = 'PostsCreate')
     ])
+    @SwaggyAdditionalClasses([PostsCreate])
     def save(PostsCreateCommand cmd) {
         def client = new RestBuilder( )
         def resp = client.post("${getUrl()}/${getPath()}"){
@@ -95,8 +95,9 @@ class PostsController {
     @ApiImplicitParams([
             @ApiImplicitParam(name = 'id', value = 'Id to update', paramType = 'path',
                     dataType = 'int', required = true),
-            @ApiImplicitParam(name = 'body', paramType = 'body', required = true,dataType='Posts')
+            @ApiImplicitParam(name = 'body', paramType = 'body', required = true,dataType='PostsUpdate')
     ])
+    @SwaggyAdditionalClasses([PostsUpdate])
     def update(PostsUpdateCommand cmd) {
         def client = new RestBuilder( )
         def resp = client.put("${getUrl()}/${getPath()}/${params.id}"){
@@ -116,17 +117,27 @@ class PostsController {
     }
 }
 
-@ToString(includeNames = true, includeFields = true, excludes = "metaClass", includePackage = false)
-class PostsUpdateCommand implements Validateable {
+class PostsUpdate {
     String title
     String body
 }
 
 @ToString(includeNames = true, includeFields = true, excludes = "metaClass", includePackage = false)
-class PostsCreateCommand implements Validateable {
+class PostsUpdateCommand extends PostsUpdate implements Validateable {
+}
+
+class PostsCreate {
     int userId
     String title
     String body
+
+}
+
+@ToString(includeNames = true, includeFields = true, excludes = "metaClass", includePackage = false)
+class PostsCreateCommand extends PostsCreate implements Validateable {
+    static constraints = {
+        userId min: 1
+    }
 }
 
 
