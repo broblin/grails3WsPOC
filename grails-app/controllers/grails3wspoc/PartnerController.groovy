@@ -1,11 +1,12 @@
 package grails3wspoc
 
+import com.github.rahulsom.swaggydoc.SwaggyDelete
+import com.github.rahulsom.swaggydoc.SwaggyList
+import com.github.rahulsom.swaggydoc.SwaggyPatch
+import com.github.rahulsom.swaggydoc.SwaggySave
+import com.github.rahulsom.swaggydoc.SwaggyShow
+import com.github.rahulsom.swaggydoc.SwaggyUpdate
 import com.wordnik.swagger.annotations.Api
-import com.wordnik.swagger.annotations.ApiImplicitParam
-import com.wordnik.swagger.annotations.ApiImplicitParams
-import com.wordnik.swagger.annotations.ApiOperation
-import com.wordnik.swagger.annotations.ApiResponse
-import com.wordnik.swagger.annotations.ApiResponses
 import grails.rest.RestfulController
 
 
@@ -23,80 +24,35 @@ class PartnerController extends RestfulController<Partner> {
     }
 
     @Override
-    @ApiOperation(value = 'List Partners', response = Partner, responseContainer = 'list')
-    @ApiImplicitParams([
-            @ApiImplicitParam(name = 'offset', value = 'Records to skip', defaultValue = '0', paramType = 'query', dataType = 'int'),
-            @ApiImplicitParam(name = 'max', value = 'Max records to return', defaultValue = '10', paramType = 'query', dataType = 'int'),
-            @ApiImplicitParam(name = 'sort', value = 'Field to sort by', defaultValue = 'id', paramType = 'query', dataType = 'string'),
-            @ApiImplicitParam(name = 'order', value = 'Order to sort by', defaultValue = 'asc', paramType = 'query', dataType = 'string'),
-            @ApiImplicitParam(name = 'q', value = 'Query', paramType = 'query', dataType = 'string'),
-    ])
+    @SwaggyList
     def index(Integer max) { super.index(max) }
 
     @Override
-    @ApiOperation(value = "Show Partner", response = Partner)
-    @ApiResponses([
-            @ApiResponse(code = 400, message = 'Bad Id provided'),
-            @ApiResponse(code = 404, message = 'Could not find Partner with that Id'),
-    ])
-    @ApiImplicitParams([
-            @ApiImplicitParam(name = 'id', value = 'Id to fetch', paramType = 'path', dataType = 'int', required = true),
-    ])
+    @SwaggyShow
     def show() {
         super.show()
     }
 
-    @ApiOperation(value = "Save Partner", response = Partner)
-    @ApiResponses([
-            @ApiResponse(code = 422, message = 'Bad Entity Received'),
-    ])
-    @ApiImplicitParams([
-            @ApiImplicitParam(name = 'body', paramType = 'body', required = true, dataType = 'Partner'),
-    ])
     @Override
+    @SwaggySave
     def save() {
         super.save()
     }
 
     @Override
-    @ApiOperation(value = "Update Partner", response = Partner)
-    @ApiResponses([
-            @ApiResponse(code = 400, message = 'Bad Id provided'),
-            @ApiResponse(code = 404, message = 'Could not find Partner with that Id'),
-            @ApiResponse(code = 422, message = 'Bad Entity Received'),
-    ])
-    @ApiImplicitParams([
-            @ApiImplicitParam(name = 'id', value = 'Id to update', paramType = 'path', dataType = 'int', required = true),
-            @ApiImplicitParam(name = 'body', paramType = 'body', required = true, dataType = 'Partner')
-    ])
+   @SwaggyUpdate
     def update() {
         super.update()
     }
 
     @Override
-    @ApiOperation(value = "Delete Partner")
-    @ApiResponses([
-            @ApiResponse(code = 400, message = 'Bad Id provided'),
-            @ApiResponse(code = 404, message = 'Could not find Partner with that Id'),
-    ])
-    @ApiImplicitParams([
-            @ApiImplicitParam(name = 'id', value = 'Id to delete', paramType = 'path', dataType = 'int', required = true),
-    ])
+    @SwaggyDelete
     def delete() {
         super.delete()
     }
 
     @Override
-    @ApiOperation(value = "Patch Partner", response = Partner)
-    @ApiResponses([
-            @ApiResponse(code = 400, message = 'Bad Id provided'),
-            @ApiResponse(code = 404, message = 'Could not find Partner with that Id'),
-            @ApiResponse(code = 422, message = 'Bad Entity Received'),
-    ])
-    @ApiImplicitParams([
-            @ApiImplicitParam(name = 'id', value = 'Id to patch', paramType = 'path', dataType = 'int', required = true),
-            @ApiImplicitParam(name = 'body', paramType = 'body', required = true, dataType = 'Partner')
-    ])
+    @SwaggyPatch
     Object patch() {
         return super.patch()
     }
