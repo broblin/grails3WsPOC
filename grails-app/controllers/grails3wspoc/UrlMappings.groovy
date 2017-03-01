@@ -16,6 +16,13 @@ class UrlMappings {
         "/partner/$id"(controller:"partner",action:"patch",method:"PATCH")
         "/partner/$id"(controller:"partner",action:"delete",method:"DELETE")
 
+        "/posts"(controller:"posts",action:"index",method:"GET")
+        "/posts"(controller:"posts",action:"save",method:"POST")
+        "/posts/$id"(controller:"posts",action:"update",method:"PUT")
+        "/posts/$id"(controller:"posts",action:"show",method:"GET")
+        "/posts/$id"(controller:"posts",action:"patch",method:"PATCH")
+        "/posts/$id"(controller:"posts",action:"delete",method:"DELETE")
+
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')

@@ -59,6 +59,9 @@ dependencies {
     //swagger
     compile "org.grails.plugins:swaggydoc-grails3:0.28.0"
 
+    //Rest-Client
+    compile 'org.grails:grails-datastore-rest-client:6.0.7.RELEASE'
+
     //console
     runtime 'org.grails.plugins:grails-console:2.0.8'
 }
@@ -66,8 +69,6 @@ dependencies {
 bootRun {
     jvmArgs('-Dspring.output.ansi.enabled=always')
 }
-
-//apply plugin: 'com.bertramlabs.asset-pipeline'
 
 assets {
     minifyJs = true
