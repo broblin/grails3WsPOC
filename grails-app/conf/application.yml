@@ -76,6 +76,8 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
+    gorm:
+        autowire: false
 endpoints:
     jmx:
         unique-names: true
@@ -129,3 +131,9 @@ environments:
 postsClient:
                 url: http://jsonplaceholder.typicode.com/
                 resource : posts
+#poc camel
+---
+management:
+                address: 127.0.0.1
+                contextPath: /admin
+                port: 8081

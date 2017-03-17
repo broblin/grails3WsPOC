@@ -64,6 +64,17 @@ dependencies {
 
     //console
     runtime 'org.grails.plugins:grails-console:2.0.8'
+
+    //apache camel
+    runtime("org.jolokia:jolokia-core")
+    compile("org.apache.camel:camel-core:2.18.0")
+    compile("org.apache.camel:camel-servlet:2.18.0")
+    compile("org.apache.camel:camel-jackson:2.18.0")
+    compile("org.apache.camel:camel-swagger-java:2.18.0")
+    compile("org.apache.camel:camel-http4:2.18.0")
+    compile("org.apache.camel:camel-cxf:2.18.0")
+    compile("org.apache.camel:camel-spring-boot:2.18.0")
+
 }
 
 bootRun {
