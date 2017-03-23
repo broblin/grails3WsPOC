@@ -133,7 +133,9 @@ postsClient:
                 resource : posts
 #poc camel
 ---
+endpoints:
+                enabled: true
+                jmx:
+                    enabled: true
 management:
-                address: 127.0.0.1
-                contextPath: /admin
-                port: 8081
+                security.enabled: false
